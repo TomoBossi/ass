@@ -34,8 +34,6 @@ func A3[T1, T2, T3 any](v1 T1, v2 T2, v3 T3, e error) (T1, T2, T3) {
 
 // Functions should never return more than 3 values, are you insane? Go make a struct and find God...
 
-// ...Unless...
-
 func repeat(n, m int) []any {
 	s := make([]any, m)
 	for i := range s {
