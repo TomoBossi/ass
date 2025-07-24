@@ -11,11 +11,11 @@ func A0(e error) {
 	}
 }
 
-func A1[T any](v T, e error) T {
+func A1[T1 any](v1 T1, e error) T1 {
 	if e != nil {
 		panic(e)
 	}
-	return v
+	return v1
 }
 
 func A2[T1, T2 any](v1 T1, v2 T2, e error) (T1, T2) {
@@ -61,14 +61,10 @@ func AN(n int) (string, error) {
 	} else {
 		sb := &strings.Builder{}
 		fmt.Fprintf(sb, "func A%d[", n)
-		writeRepeat(sb, n, "T%d", ",", "")
-		sb.WriteString(" any](")
-		writeRepeat(sb, n, "v%d T%d", ",", ",")
-		sb.WriteString("e error)(")
-		writeRepeat(sb, n, "T%d", ",", "")
-		sb.WriteString("){if e!=nil{panic(e)};return ")
-		writeRepeat(sb, n, "v%d", ",", "")
-		sb.WriteString("}")
+		writeRepeat(sb, n, "T%d", ",", " any](")
+		writeRepeat(sb, n, "v%d T%d", ",", ",e error)(")
+		writeRepeat(sb, n, "T%d", ",", "){if e!=nil{panic(e)};return ")
+		writeRepeat(sb, n, "v%d", ",", "}")
 		return sb.String(), nil
 	}
 }
